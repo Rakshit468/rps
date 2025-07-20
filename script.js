@@ -36,28 +36,62 @@ const printResult = (user, comp) => {
     }
   }
 };
+
 let computerWin = 0;
 let userWin = 0;
-const result = document.querySelector("h3");
-const btnRock = document.querySelector("#Rock");
-const btnPaper = document.querySelector("#Paper");
-const btnScissor = document.querySelector("#Scissor");
+
+const reset = () => {
+  computerWin = 0;
+  userWin = 0;
+};
+
+const roundResult = document.querySelector("h3");
+const btns = document.querySelectorAll("button");
+const scoreBoard = document.querySelector(".scoreboard");
 
 let userInput = "";
-btnRock.addEventListener("click", () => {
-  userInput = "Rock";
-  let computerInput = getComputerChoice();
-  console.log(`User chose ${userInput}`);
-  console.log(`Computer chose ${computerInput}`);
-  result.textContent = printResult(userInput, computerInput);
+btns.forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    if (event.target.id == "Rock") {
+      userInput = "Rock";
+    } else if (event.target.id == "Paper") {
+      userInput = "Paper";
+    } else userInput = "Scissor";
+    let computerInput = getComputerChoice();
+    console.log(`User chose ${userInput}`);
+    console.log(`Computer chose ${computerInput}`);
+    let result = printResult(userInput, computerInput);
+    roundResult.textContent = result;
+    if (result == "User wins") userWin++;
+    else if (result == "Computer wins") computerWin++;
+    scoreBoard.textContent = `Current Scoreboard => User : ${userWin} | Computer : ${computerWin}`;
+    if (userWin == 5) {
+      alert("Yay you won! Wanna play another one?");
+      reset();
+    } else if (computerWin == 5) {
+      alert("You are a sore loser, wanna try again?");
+      reset();
+    }
+  });
 });
 
-btnPaper.addEventListener("click", () => {
+/*btnPaper.addEventListener("click", () => {
   userInput = "Paper";
   let computerInput = getComputerChoice();
   console.log(`User chose ${userInput}`);
   console.log(`Computer chose ${computerInput}`);
-  result.textContent = printResult(userInput, computerInput);
+  let result = printResult(userInput, computerInput);
+  roundResult.textContent = result;
+  if (result == "User wins") userWin++;
+  else if (result == "Computer wins") computerWin++;
+  scoreBoard.textContent = `Current Scoreboard => User : ${userWin} | Computer : ${computerWin}`;
+  if (userWin == 5) {
+    alert("Yay you won! Wanna play another one?");
+    reset();
+  } else if (computerWin == 5) {
+    alert("You are a sore loser, wanna try again?");
+    reset();
+  }
 });
 
 btnScissor.addEventListener("click", () => {
@@ -65,7 +99,18 @@ btnScissor.addEventListener("click", () => {
   let computerInput = getComputerChoice();
   console.log(`User chose ${userInput}`);
   console.log(`Computer chose ${computerInput}`);
-  result.textContent = printResult(userInput, computerInput);
+  let result = printResult(userInput, computerInput);
+  roundResult.textContent = result;
+  if (result == "User wins") userWin++;
+  else if (result == "Computer wins") computerWin++;
+  scoreBoard.textContent = `Current Scoreboard => User : ${userWin} | Computer : ${computerWin}`;
+  if (userWin == 5) {
+    alert("Yay you won! Wanna play another one?");
+    reset();
+  } else if (computerWin == 5) {
+    alert("You are a sore loser, wanna try again?");
+    reset();
+  }
 });
 
 /*for(let i=1;i<=5;i++){
