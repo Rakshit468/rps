@@ -1,72 +1,74 @@
 const getComputerChoice = () => {
-    let val = Math.random();
-    if(val < 0.33)
-    {
-        return "Rock";
-    }
-    else if(val > 0.33 && val < 0.66)
-    {
-        return "Paper";
-    }
-    else{
-        return "Scissor";
-    }
-}
+  let val = Math.random();
+  if (val < 0.33) {
+    return "Rock";
+  } else if (val > 0.33 && val < 0.66) {
+    return "Paper";
+  } else {
+    return "Scissor";
+  }
+};
 
-const getUserChoice = () => {
-    let userInput = prompt("Choose between Rock,Paper and Scissors");
-    return userInput;
-}
+const printResult = (user, comp) => {
+  if (user == "Rock") {
+    if (comp == "Rock") {
+      return "Draw";
+    } else if (comp == "Scissor") {
+      return "User wins";
+    } else {
+      return "Computer wins";
+    }
+  } else if (user == "Paper") {
+    if (comp == "Paper") {
+      return "Draw";
+    } else if (comp == "Rock") {
+      return "User wins";
+    } else {
+      return "Computer wins";
+    }
+  } else {
+    if (comp == "Scissor") {
+      return "Draw";
+    } else if (comp == "Rock") {
+      return "Computer wins";
+    } else {
+      return "User wins";
+    }
+  }
+};
+let computerWin = 0;
+let userWin = 0;
+const result = document.querySelector("h3");
+const btnRock = document.querySelector("#Rock");
+const btnPaper = document.querySelector("#Paper");
+const btnScissor = document.querySelector("#Scissor");
 
-const printResult = (user,comp) => {
-    if(user == 'Rock')
-    {
-        if(comp == 'Rock')
-        {
-            return 'Draw';
-        }
-        else if(comp = 'Scissors')
-        {
-            return 'User wins';
-        }
-        else
-        {
-            return 'Computer wins';
-        }
-    }
-    else if(user == 'Paper')
-    {
-        if(comp == 'Paper')
-        {
-            return 'Draw';
-        }
-        else if(comp == 'Rock')
-        {
-            return 'User wins';
-        }
-        else{
-            'Computer wins';
-        }
-    }
-    else
-    {
-        if(comp == 'Scissors')
-        {
-            return 'Draw';
-        }
-        else if(comp == 'Rock')
-        {
-            return 'Computer wins';
-        }
-        else
-        {
-            return 'User wins';
-        }
-    }
-}
-let computerwin = 0
-let userwin = 0;
-for(let i=1;i<=5;i++){
+let userInput = "";
+btnRock.addEventListener("click", () => {
+  userInput = "Rock";
+  let computerInput = getComputerChoice();
+  console.log(`User chose ${userInput}`);
+  console.log(`Computer chose ${computerInput}`);
+  result.textContent = printResult(userInput, computerInput);
+});
+
+btnPaper.addEventListener("click", () => {
+  userInput = "Paper";
+  let computerInput = getComputerChoice();
+  console.log(`User chose ${userInput}`);
+  console.log(`Computer chose ${computerInput}`);
+  result.textContent = printResult(userInput, computerInput);
+});
+
+btnScissor.addEventListener("click", () => {
+  userInput = "Scissor";
+  let computerInput = getComputerChoice();
+  console.log(`User chose ${userInput}`);
+  console.log(`Computer chose ${computerInput}`);
+  result.textContent = printResult(userInput, computerInput);
+});
+
+/*for(let i=1;i<=5;i++){
 let userchoice = getUserChoice();
 let computerchoice = getComputerChoice();
 let result = printResult(userchoice,computerchoice);
@@ -97,4 +99,4 @@ else
 {
     alert("It's a draw");
 }
-
+*/
